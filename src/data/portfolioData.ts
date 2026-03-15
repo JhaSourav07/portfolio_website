@@ -16,8 +16,8 @@ export const ALL_NODES: PortfolioNode[] = [
         'Building backend systems, automation tools, web apps, and exploring the decentralized frontier of blockchain development.',
       socialLinks: {
         github: 'https://github.com/JhaSourav07',
-        linkedin: 'https://linkedin.com/in/jhasourav07',
-        email: 'mailto:souravjha@example.com',
+        linkedin: 'https://linkedin.com/in/souravjhahind',
+        email: 'mailto:souravkjha2007@gmail.com',
       },
     },
   },
@@ -167,8 +167,8 @@ export const ALL_NODES: PortfolioNode[] = [
 
   // ─── Experience Items ────────────────────────────────────────────────────────
   {
-    id: 'exp-fullstack',
-    label: 'Full Stack',
+    id: 'exp-coming-soon',
+    label: 'Journey Updates',
     type: 'experience-item',
     parentId: 'experience',
     visible: false,
@@ -177,46 +177,10 @@ export const ALL_NODES: PortfolioNode[] = [
     size: 13,
     content: {
       experience: {
-        title: 'Full Stack Development',
-        period: '2022 – Present',
+        title: 'Experience Details Coming Soon',
+        period: 'Present',
         description:
-          'Began the journey with HTML/CSS/JS, progressed to React, Next.js, and Node.js. Built multiple production-grade web apps and REST APIs with modern tooling.',
-      },
-    },
-  },
-  {
-    id: 'exp-backend',
-    label: 'Backend Systems',
-    type: 'experience-item',
-    parentId: 'experience',
-    visible: false,
-    emoji: '◉',
-    color: '#fbbf24',
-    size: 13,
-    content: {
-      experience: {
-        title: 'Backend Systems & Automation',
-        period: '2023 – Present',
-        description:
-          'Deep-dived into server-side architecture, database optimization, API design patterns, and automation tooling for Discord and Linux server environments.',
-      },
-    },
-  },
-  {
-    id: 'exp-web3',
-    label: 'Web3 Journey',
-    type: 'experience-item',
-    parentId: 'experience',
-    visible: false,
-    emoji: '◉',
-    color: '#fbbf24',
-    size: 13,
-    content: {
-      experience: {
-        title: 'Exploring Blockchain & Web3',
-        period: '2024 – Present',
-        description:
-          'Actively learning Solidity, smart contract development, DApp architecture, and the broader Ethereum ecosystem. Building experiments on testnet environments.',
+          'I am currently compiling my professional timeline and experience details. Check back soon for updates.',
       },
     },
   },
@@ -253,7 +217,7 @@ export const ALL_NODES: PortfolioNode[] = [
       contact: {
         label: 'LinkedIn',
         value: 'Sourav Jha',
-        href: 'https://linkedin.com/in/jhasourav07',
+        href: 'https://linkedin.com/in/souravjhahind',
         icon: 'linkedin',
       },
     },
@@ -270,8 +234,8 @@ export const ALL_NODES: PortfolioNode[] = [
     content: {
       contact: {
         label: 'Email',
-        value: 'souravjha@example.com',
-        href: 'mailto:souravjha@example.com',
+        value: 'souravkjha2007@gmail.com',
+        href: 'mailto:souravkjha2007@gmail.com',
         icon: 'mail',
       },
     },
@@ -304,9 +268,7 @@ export const ALL_LINKS: PortfolioLink[] = [
   { source: 'skills', target: 'skill-linux' },
 
   // Experience → items
-  { source: 'experience', target: 'exp-fullstack' },
-  { source: 'experience', target: 'exp-backend' },
-  { source: 'experience', target: 'exp-web3' },
+  { source: 'experience', target: 'exp-coming-soon' },
 
   // Contact → items
   { source: 'contact', target: 'contact-github' },
