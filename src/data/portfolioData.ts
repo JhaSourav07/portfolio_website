@@ -74,21 +74,81 @@ export const ALL_NODES: PortfolioNode[] = [
 
   // ─── Project Nodes ──────────────────────────────────────────────────────────
   {
-    id: 'proj-coming-soon',
-    label: 'Coming Soon',
+    id: 'proj-anuvaad',
+    label: 'Anuvaad',
     type: 'project',
     parentId: 'projects',
     category: 'fullstack',
     visible: false,
-    emoji: '⬡',
+    emoji: '📱',
     color: '#8b5cf6',
     size: 13,
     content: {
       project: {
-        name: 'Projects Coming Soon',
-        description:
-          'I am currently updating my project portfolio. Check back shortly to see my latest work in full-stack development, backend systems, and Web3.',
-        techStack: ['Next.js', 'Node.js', 'TypeScript'],
+        name: 'Anuvaad',
+        description: 'Using Flutter',
+        techStack: ['Flutter'],
+        github: 'https://github.com/JhaSourav07/Anuvaad',
+        category: 'fullstack',
+      },
+    },
+  },
+  {
+    id: 'proj-stromin',
+    label: 'Stromin',
+    type: 'project',
+    parentId: 'projects',
+    category: 'fullstack',
+    visible: false,
+    emoji: '⚡',
+    color: '#22c55e',
+    size: 13,
+    content: {
+      project: {
+        name: 'Stromin',
+        description: 'Using flutter and mern backend',
+        techStack: ['Flutter', 'MongoDB', 'Express', 'React', 'Node.js'],
+        github: 'https://github.com/JhaSourav07/stromin',
+        category: 'fullstack',
+      },
+    },
+  },
+  {
+    id: 'proj-cryptopulse',
+    label: 'CryptoPulse',
+    type: 'project',
+    parentId: 'projects',
+    category: 'fullstack',
+    visible: false,
+    emoji: '📈',
+    color: '#3b82f6',
+    size: 13,
+    content: {
+      project: {
+        name: 'CryptoPulse',
+        description: 'Flutter',
+        techStack: ['Flutter'],
+        github: 'https://github.com/JhaSourav07/CryptoPulse',
+        category: 'fullstack',
+      },
+    },
+  },
+  {
+    id: 'proj-tictaktoe',
+    label: 'TicTakToe',
+    type: 'project',
+    parentId: 'projects',
+    category: 'fullstack',
+    visible: false,
+    emoji: '🎮',
+    color: '#ef4444',
+    size: 13,
+    content: {
+      project: {
+        name: 'TicTakToe Game',
+        description: 'Flutter and firebase',
+        techStack: ['Flutter', 'Firebase'],
+        github: 'https://github.com/JhaSourav07/ticTakToe',
         category: 'fullstack',
       },
     },
@@ -250,7 +310,10 @@ export const ALL_LINKS: PortfolioLink[] = [
   { source: 'genesis', target: 'contact', animated: true },
 
   // Projects → sub-projects
-  { source: 'projects', target: 'proj-coming-soon' },
+  { source: 'projects', target: 'proj-anuvaad' },
+  { source: 'projects', target: 'proj-stromin' },
+  { source: 'projects', target: 'proj-cryptopulse' },
+  { source: 'projects', target: 'proj-tictaktoe' },
 
   // Skills → skill nodes
   { source: 'skills', target: 'skill-react' },
