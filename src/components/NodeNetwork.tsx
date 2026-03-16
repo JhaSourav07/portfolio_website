@@ -130,40 +130,48 @@ export default function NodeNetwork({
       const node = nodes.find((n) => n.id === selectedNode.id);
       if (node?.x !== undefined && node?.y !== undefined) {
         setTimeout(() => {
+          const isMobile = window.innerWidth <= 768;
           graphRef.current?.centerAt(node.x, node.y, 800);
           // Changed zoom to pull out further allowing the gigantic network to fit on screen
-          graphRef.current?.zoom(selectedNode.type === 'genesis' ? 0.8 : 1.15, 800);
+          graphRef.current?.zoom(
+            selectedNode.type === 'genesis' 
+              ? (isMobile ? 0.4 : 0.6) 
+              : (isMobile ? 0.7 : 0.95), 
+            800
+          );
         }, 100);
       }
     }
-  }, [selectedNode, nodes]);
+  }, [selectedNode, nodes, dimensions.width]);
 
   // Center on genesis at start
   useEffect(() => {
     setTimeout(() => {
+      const isMobile = window.innerWidth <= 768;
       graphRef.current?.centerAt(0, 0, 1000);
-      graphRef.current?.zoom(0.9, 1000);
+      graphRef.current?.zoom(isMobile ? 0.5 : 0.7, 1000);
     }, 500);
   }, []);
 
   // Apply Extreme Simulation Forces dynamically
   useEffect(() => {
     if (graphRef.current) {
+      const isMobile = window.innerWidth <= 768;
       const charge = graphRef.current.d3Force('charge');
       if (charge) {
         // Massive repulsion to throw nodes to the edges of the screen
-        charge.strength(-3500); 
-        charge.distanceMax(4000);
+        charge.strength(isMobile ? -1500 : -2000); 
+        charge.distanceMax(isMobile ? 2000 : 3000);
       }
       const link = graphRef.current.d3Force('link');
       if (link) {
         // Extremely long links so clusters don't overlap
-        link.distance(400); 
+        link.distance(isMobile ? 180 : 250); 
       }
       // Re-warm the simulation so the new extreme physics take over immediately
       graphRef.current.d3ReheatSimulation();
     }
-  }, [nodes.length]);
+  }, [nodes.length, dimensions.width]);
 
   const nodeCanvasObject = useCallback(
     (node: object, ctx: CanvasRenderingContext2D, globalScale: number) => {
