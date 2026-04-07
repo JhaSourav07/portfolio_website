@@ -153,6 +153,27 @@ export const ALL_NODES: PortfolioNode[] = [
       },
     },
   },
+  {
+    id: 'proj-quickpdf',
+    label: 'QuickPDF',
+    type: 'project',
+    parentId: 'projects',
+    category: 'tools',
+    visible: false,
+    emoji: '📄',
+    color: '#f43f5e',
+    size: 13,
+    content: {
+      project: {
+        name: 'QuickPDF',
+        description: 'A privacy-first, zero-backend web application for merging and splitting PDFs directly in the browser.',
+        techStack: ['React', 'JavaScript', 'TailwindCSS', 'Vite'],
+        github: 'https://github.com/JhaSourav07/QuickPDF',
+        demo: 'https://quickpdff.vercel.app/',
+        category: 'tools',
+      },
+    },
+  },
 
   // ─── Skill Nodes ────────────────────────────────────────────────────────────
   // Frontend
@@ -314,6 +335,7 @@ export const ALL_LINKS: PortfolioLink[] = [
   { source: 'projects', target: 'proj-stromin' },
   { source: 'projects', target: 'proj-cryptopulse' },
   { source: 'projects', target: 'proj-tictaktoe' },
+  { source: 'projects', target: 'proj-quickpdf' },
 
   // Skills → skill nodes
   { source: 'skills', target: 'skill-react' },
