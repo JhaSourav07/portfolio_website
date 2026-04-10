@@ -488,6 +488,7 @@ export const ALL_LINKS: PortfolioLink[] = [
   { source: "projects", target: "proj-cryptopulse" },
   { source: "projects", target: "proj-tictaktoe" },
   { source: "projects", target: "proj-quickpdf" },
+  { source: "projects", target: "proj-Stockenza" },
 
   // Skills → skill nodes
   { source: "skills", target: "skill-react" },
