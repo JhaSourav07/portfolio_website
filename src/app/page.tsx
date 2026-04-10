@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { useGraphState } from '@/hooks/useGraphState';
-import InfoPanel from '@/components/InfoPanel';
-import HUD from '@/components/HUD';
-import BackgroundGrid from '@/components/BackgroundGrid';
-import type { ComponentProps } from 'react';
-import type NodeNetworkType from '@/components/NodeNetwork';
+import dynamic from "next/dynamic";
+import { useGraphState } from "@/hooks/useGraphState";
+import InfoPanel from "@/components/InfoPanel";
+import HUD from "@/components/HUD";
+import BackgroundGrid from "@/components/BackgroundGrid";
+import type { ComponentProps } from "react";
+import type NodeNetworkType from "@/components/NodeNetwork";
 
 const NodeNetwork = dynamic<ComponentProps<typeof NodeNetworkType>>(
-  () => import('@/components/NodeNetwork'),
-  { ssr: false }
+  () => import("@/components/NodeNetwork"),
+  { ssr: false },
 );
 
 export default function Home() {

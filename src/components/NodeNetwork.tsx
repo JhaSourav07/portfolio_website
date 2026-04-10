@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useCallback, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { PortfolioNode, PortfolioLink } from '@/types/graph';
+import { useEffect, useRef, useCallback, useState } from "react";
+import dynamic from "next/dynamic";
+import { PortfolioNode, PortfolioLink } from "@/types/graph";
 
 // Dynamically import to avoid SSR issues with canvas
-const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
+const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), {
+  ssr: false,
+});
 
 interface NodeNetworkProps {
   nodes: PortfolioNode[];
@@ -16,12 +18,12 @@ interface NodeNetworkProps {
 }
 
 const NODE_COLORS: Record<string, string> = {
-  genesis: '#7c3aed',
-  main: '#6366f1',
-  project: '#06b6d4',
-  skill: '#10b981',
-  'experience-item': '#f59e0b',
-  'contact-item': '#ec4899',
+  genesis: "#7c3aed",
+  main: "#6366f1",
+  project: "#06b6d4",
+  skill: "#10b981",
+  "experience-item": "#f59e0b",
+  "contact-item": "#ec4899",
 };
 
 function drawNode(
@@ -29,11 +31,11 @@ function drawNode(
   ctx: CanvasRenderingContext2D,
   globalScale: number,
   isHovered: boolean,
-  isSelected: boolean
+  isSelected: boolean,
 ) {
   const { x = 0, y = 0, type, label, size = 14 } = node;
-  const color = node.color || NODE_COLORS[type] || '#6366f1';
-  
+  const color = node.color || NODE_COLORS[type] || "#6366f1";
+
   // Base scale boost to make nodes more prominent
   const baseSize = size * 1.25;
   const r = baseSize / globalScale;
@@ -43,9 +45,9 @@ function drawNode(
   // 1. Ambient Background Glow
   const glowR = r * glowScale * 2.8;
   const gradient = ctx.createRadialGradient(x, y, r * 0.2, x, y, glowR);
-  gradient.addColorStop(0, color + 'cc');
-  gradient.addColorStop(0.4, color + '55');
-  gradient.addColorStop(1, 'rgba(0,0,0,0)');
+  gradient.addColorStop(0, color + "cc");
+  gradient.addColorStop(0.4, color + "55");
+  gradient.addColorStop(1, "rgba(0,0,0,0)");
   ctx.beginPath();
   ctx.arc(x, y, glowR, 0, 2 * Math.PI);
   ctx.fillStyle = gradient;
@@ -54,7 +56,7 @@ function drawNode(
   // 2. Outer Glass Node Ring
   ctx.beginPath();
   ctx.arc(x, y, r * glowScale * 1.15, 0, 2 * Math.PI);
-  ctx.strokeStyle = color + (isSelected ? 'ff' : isHovered ? 'ee' : '88');
+  ctx.strokeStyle = color + (isSelected ? "ff" : isHovered ? "ee" : "88");
   ctx.lineWidth = (isSelected ? 2.5 : 1.5) / globalScale;
   ctx.stroke();
 
@@ -62,46 +64,46 @@ function drawNode(
   ctx.beginPath();
   ctx.arc(x, y, r * glowScale, 0, 2 * Math.PI);
   const innerGradient = ctx.createLinearGradient(x - r, y - r, x + r, y + r);
-  innerGradient.addColorStop(0, color + 'dd');
-  innerGradient.addColorStop(1, color + '33');
+  innerGradient.addColorStop(0, color + "dd");
+  innerGradient.addColorStop(1, color + "33");
   ctx.fillStyle = innerGradient;
   ctx.fill();
 
   // Overlay white shine border for depth
-  ctx.strokeStyle = '#ffffff66';
+  ctx.strokeStyle = "#ffffff66";
   ctx.lineWidth = 1 / globalScale;
   ctx.stroke();
 
   // 4. Dark Eye Center
   ctx.beginPath();
   ctx.arc(x, y, r * glowScale * 0.35, 0, 2 * Math.PI);
-  ctx.fillStyle = '#0f172aee';
+  ctx.fillStyle = "#0f172aee";
   ctx.fill();
 
   // 5. Typography Rendering
-  ctx.font = `${type === 'genesis' ? 'bold ' : '600 '}${fontSize}px 'Space Grotesk', sans-serif`;
-  ctx.fillStyle = '#ffffff';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  
+  ctx.font = `${type === "genesis" ? "bold " : "600 "}${fontSize}px 'Space Grotesk', sans-serif`;
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
   // Drop shadow for high contrast text
-  ctx.shadowColor = 'rgba(0,0,0,0.8)';
+  ctx.shadowColor = "rgba(0,0,0,0.8)";
   ctx.shadowBlur = 6 / globalScale;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 2 / globalScale;
-  
+
   ctx.fillText(label, x, y + r * glowScale + fontSize * 1.6);
-  
+
   // Reset shadow
   ctx.shadowBlur = 0;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 0;
 
   // Genesis: hash ID underneath
-  if (type === 'genesis') {
+  if (type === "genesis") {
     ctx.font = `${Math.max(8, 11 / globalScale)}px 'JetBrains Mono', monospace`;
-    ctx.fillStyle = '#a78bfa';
-    ctx.fillText('#0x0000...genesis', x, y + r * glowScale + fontSize * 3.0);
+    ctx.fillStyle = "#a78bfa";
+    ctx.fillText("#0x0000...genesis", x, y + r * glowScale + fontSize * 3.0);
   }
 }
 
@@ -120,8 +122,8 @@ export default function NodeNetwork({
     const update = () =>
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   // Zoom to selected node
@@ -134,10 +136,14 @@ export default function NodeNetwork({
           graphRef.current?.centerAt(node.x, node.y, 800);
           // Changed zoom to pull out further allowing the gigantic network to fit on screen
           graphRef.current?.zoom(
-            selectedNode.type === 'genesis' 
-              ? (isMobile ? 0.4 : 0.6) 
-              : (isMobile ? 0.7 : 0.95), 
-            800
+            selectedNode.type === "genesis"
+              ? isMobile
+                ? 0.4
+                : 0.6
+              : isMobile
+                ? 0.7
+                : 0.95,
+            800,
           );
         }, 100);
       }
@@ -157,16 +163,16 @@ export default function NodeNetwork({
   useEffect(() => {
     if (graphRef.current) {
       const isMobile = window.innerWidth <= 768;
-      const charge = graphRef.current.d3Force('charge');
+      const charge = graphRef.current.d3Force("charge");
       if (charge) {
         // Massive repulsion to throw nodes to the edges of the screen
-        charge.strength(isMobile ? -1500 : -2000); 
+        charge.strength(isMobile ? -1500 : -2000);
         charge.distanceMax(isMobile ? 2000 : 3000);
       }
-      const link = graphRef.current.d3Force('link');
+      const link = graphRef.current.d3Force("link");
       if (link) {
         // Extremely long links so clusters don't overlap
-        link.distance(isMobile ? 180 : 250); 
+        link.distance(isMobile ? 180 : 250);
       }
       // Re-warm the simulation so the new extreme physics take over immediately
       graphRef.current.d3ReheatSimulation();
@@ -180,46 +186,59 @@ export default function NodeNetwork({
       const isSelected = selectedNode?.id === n.id;
       drawNode(n, ctx, globalScale, isHovered, isSelected);
     },
-    [hoveredNode, selectedNode]
+    [hoveredNode, selectedNode],
   );
 
   const linkColor = useCallback(
     (link: object) => {
       const l = link as PortfolioLink;
-      const src = typeof l.source === 'string' ? l.source : (l.source as PortfolioNode).id;
-      const tgt = typeof l.target === 'string' ? l.target : (l.target as PortfolioNode).id;
+      const src =
+        typeof l.source === "string"
+          ? l.source
+          : (l.source as PortfolioNode).id;
+      const tgt =
+        typeof l.target === "string"
+          ? l.target
+          : (l.target as PortfolioNode).id;
       if (
         selectedNode &&
         (src === selectedNode.id || tgt === selectedNode.id)
       ) {
-        return '#7c3aedcc';
+        return "#7c3aedcc";
       }
-      return '#6366f12a';
+      return "#6366f12a";
     },
-    [selectedNode]
+    [selectedNode],
   );
 
   const linkWidth = useCallback(
     (link: object) => {
       const l = link as PortfolioLink;
-      const src = typeof l.source === 'string' ? l.source : (l.source as PortfolioNode).id;
-      const tgt = typeof l.target === 'string' ? l.target : (l.target as PortfolioNode).id;
-      if (selectedNode && (src === selectedNode.id || tgt === selectedNode.id)) return 2.5;
+      const src =
+        typeof l.source === "string"
+          ? l.source
+          : (l.source as PortfolioNode).id;
+      const tgt =
+        typeof l.target === "string"
+          ? l.target
+          : (l.target as PortfolioNode).id;
+      if (selectedNode && (src === selectedNode.id || tgt === selectedNode.id))
+        return 2.5;
       return 1.2;
     },
-    [selectedNode]
+    [selectedNode],
   );
 
   const handleNodeHover = useCallback((node: object | null) => {
     setHoveredNode(node as PortfolioNode | null);
-    document.body.style.cursor = node ? 'pointer' : 'default';
+    document.body.style.cursor = node ? "pointer" : "default";
   }, []);
 
   const handleClick = useCallback(
     (node: object) => {
       onNodeClick(node as PortfolioNode);
     },
-    [onNodeClick]
+    [onNodeClick],
   );
 
   const graphData = { nodes, links };
@@ -233,8 +252,13 @@ export default function NodeNetwork({
         height={dimensions.height}
         backgroundColor="transparent"
         nodeCanvasObject={nodeCanvasObject}
-        nodeCanvasObjectMode={() => 'replace'}
-        nodePointerAreaPaint={(node: object, color: string, ctx: CanvasRenderingContext2D, globalScale: number) => {
+        nodeCanvasObjectMode={() => "replace"}
+        nodePointerAreaPaint={(
+          node: object,
+          color: string,
+          ctx: CanvasRenderingContext2D,
+          globalScale: number,
+        ) => {
           const n = node as PortfolioNode;
           const r = (((n.size ?? 14) * 1.25) / globalScale) * 2;
           ctx.fillStyle = color;
@@ -248,17 +272,25 @@ export default function NodeNetwork({
         linkWidth={linkWidth}
         linkDirectionalParticles={(link: object) => {
           const l = link as PortfolioLink;
-          const src = typeof l.source === 'string' ? l.source : (l.source as PortfolioNode).id;
-          const tgt = typeof l.target === 'string' ? l.target : (l.target as PortfolioNode).id;
-          return genesisClicked && (src === 'genesis' || tgt === 'genesis') ? 4 : 0;
+          const src =
+            typeof l.source === "string"
+              ? l.source
+              : (l.source as PortfolioNode).id;
+          const tgt =
+            typeof l.target === "string"
+              ? l.target
+              : (l.target as PortfolioNode).id;
+          return genesisClicked && (src === "genesis" || tgt === "genesis")
+            ? 4
+            : 0;
         }}
         linkDirectionalParticleWidth={2.5}
-        linkDirectionalParticleColor={() => '#a855f7'}
+        linkDirectionalParticleColor={() => "#a855f7"}
         linkDirectionalParticleSpeed={0.008}
         d3AlphaDecay={0.02}
         d3VelocityDecay={0.3}
         cooldownTime={3000}
-        nodeLabel={() => ''}
+        nodeLabel={() => ""}
       />
     </div>
   );

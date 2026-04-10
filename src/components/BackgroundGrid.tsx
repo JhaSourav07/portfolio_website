@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface Particle {
   x: number;
@@ -17,7 +17,7 @@ export default function BackgroundGrid() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animId: number;
@@ -28,7 +28,7 @@ export default function BackgroundGrid() {
       canvas.height = window.innerHeight;
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
 
     // Spawn particles
     for (let i = 0; i < 60; i++) {
@@ -49,7 +49,7 @@ export default function BackgroundGrid() {
 
       // Draw grid
       const gridSize = 60;
-      ctx.strokeStyle = 'rgba(99,102,241,0.06)';
+      ctx.strokeStyle = "rgba(99,102,241,0.06)";
       ctx.lineWidth = 0.5;
       for (let x = 0; x < w; x += gridSize) {
         ctx.beginPath();
@@ -85,7 +85,7 @@ export default function BackgroundGrid() {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 

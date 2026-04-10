@@ -1,6 +1,12 @@
-export type NodeType = 'genesis' | 'main' | 'project' | 'skill' | 'experience-item' | 'contact-item';
-export type ProjectCategory = 'fullstack' | 'backend' | 'web3' | 'tools';
-export type SkillCategory = 'frontend' | 'backend' | 'web3' | 'tools';
+export type NodeType =
+  | "genesis"
+  | "main"
+  | "project"
+  | "skill"
+  | "experience-item"
+  | "contact-item";
+export type ProjectCategory = "fullstack" | "backend" | "web3" | "tools";
+export type SkillCategory = "frontend" | "backend" | "web3" | "tools";
 
 export interface ProjectData {
   name: string;
@@ -14,7 +20,7 @@ export interface ProjectData {
 export interface SkillData {
   name: string;
   category: SkillCategory;
-  level?: 'beginner' | 'intermediate' | 'advanced';
+  level?: "beginner" | "intermediate" | "advanced";
 }
 
 export interface ExperienceItem {

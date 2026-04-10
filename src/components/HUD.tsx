@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { PortfolioNode } from '@/types/graph';
+import { motion, AnimatePresence } from "framer-motion";
+import { PortfolioNode } from "@/types/graph";
 
 interface HUDProps {
   genesisClicked: boolean;
@@ -17,7 +17,7 @@ export default function HUD({ genesisClicked, selectedNode }: HUDProps) {
           portfolio://sourav-jha/v1.0
         </p>
         <p className="text-xs font-mono text-violet-500/50 mt-0.5">
-          {new Date().toISOString().split('T')[0]}
+          {new Date().toISOString().split("T")[0]}
         </p>
       </div>
 
@@ -25,10 +25,12 @@ export default function HUD({ genesisClicked, selectedNode }: HUDProps) {
       <div className="fixed top-6 right-6 z-40 pointer-events-none">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-mono text-slate-500">node network online</span>
+          <span className="text-xs font-mono text-slate-500">
+            node network online
+          </span>
         </div>
         <p className="text-xs font-mono text-slate-700 text-right mt-0.5">
-          {genesisClicked ? 'network expanded' : 'awaiting genesis'}
+          {genesisClicked ? "network expanded" : "awaiting genesis"}
         </p>
       </div>
 
@@ -50,7 +52,9 @@ export default function HUD({ genesisClicked, selectedNode }: HUDProps) {
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-violet-500" />
               </motion.div>
-              <p className="text-xs text-slate-500 font-mono">Click the Genesis node to begin</p>
+              <p className="text-xs text-slate-500 font-mono">
+                Click the Genesis node to begin
+              </p>
             </div>
           </motion.div>
         )}
@@ -70,7 +74,9 @@ export default function HUD({ genesisClicked, selectedNode }: HUDProps) {
               <span className="text-violet-500">/</span>
               {selectedNode.parentId && (
                 <>
-                  <span className="text-slate-500">{selectedNode.parentId}</span>
+                  <span className="text-slate-500">
+                    {selectedNode.parentId}
+                  </span>
                   <span className="text-violet-500">/</span>
                 </>
               )}
@@ -81,7 +87,12 @@ export default function HUD({ genesisClicked, selectedNode }: HUDProps) {
       </AnimatePresence>
 
       {/* Corner decoration dots */}
-      {['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4'].map((pos) => (
+      {[
+        "top-4 left-4",
+        "top-4 right-4",
+        "bottom-4 left-4",
+        "bottom-4 right-4",
+      ].map((pos) => (
         <div
           key={pos}
           className={`fixed ${pos} z-40 pointer-events-none w-2 h-2`}
