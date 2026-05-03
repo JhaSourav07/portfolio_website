@@ -207,6 +207,33 @@ export const ALL_NODES: PortfolioNode[] = [
       },
     },
   },
+  {
+    id: "proj-Commitpulse",
+    label: "Commitpulse",
+    type: "project",
+    parentId: "projects",
+    category: "tools",
+    visible: false,
+    emoji: "📄",
+    color: "#B91FCE",
+    size: 13,
+    content: {
+      project: {
+        name: "Commitpulse",
+        description:
+          "A high-performance Next.js API that transforms raw GitHub contribution data into premium, 3D isometric monoliths. Featuring real-time GraphQL syncing, custom SVG filters, and deep theme customization",
+        techStack: [
+          "React",
+          "TypeScript",
+          "TailwindCSS",
+          "Next.js",
+        ],
+        github: "https://github.com/JhaSourav07/Commitpulse",
+        demo: "https://commitpulse.vercel.app/",
+        category: "fullstack",
+      },
+    },
+  },
 
   // ─── Skill Nodes ────────────────────────────────────────────────────────────
   // Frontend
@@ -489,6 +516,7 @@ export const ALL_LINKS: PortfolioLink[] = [
   { source: "projects", target: "proj-tictaktoe" },
   { source: "projects", target: "proj-quickpdf" },
   { source: "projects", target: "proj-Stockenza" },
+  { source: "projects", target: "proj-Commitpulse" },
 
   // Skills → skill nodes
   { source: "skills", target: "skill-react" },
